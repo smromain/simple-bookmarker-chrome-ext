@@ -10,8 +10,6 @@
         </style>
     </head>
     <body ng-controller='Main'>
-    <button>Show/Hide Bookmarks</button>
-    {{test}}
     <li ng-repeat="bookmark in bookmarks"><a href={{bookmark}} target="_blank"> {{bookmark}}</a></li>
     ---
     <button ng-click="addBookmark()">Add Current Page To Bookmarks</button>

@@ -21,7 +21,6 @@ var app = angular.module('app', [])
 					}
 					markArr.push(tabArray[0].url)
 			    	chrome.storage.local.set({bookmark: markArr});
-			    	$scope.$apply();
 				});
 			})
 		};
