@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app='app' ng-csp>
+    <head>
+        <script src="angular.min.js"></script>
+        <script src="popup.js"></script>
+        <style>
+        body {
+            width: 500px;
+        }
+        </style>
+    </head>
+    <body ng-controller='Main'>
+    <button>Show/Hide Bookmarks</button>
+    {{test}}
+    <li ng-repeat="bookmark in bookmarks"><a href={{bookmark}} target="_blank"> {{bookmark}}</a></li>
+    ---
+    <button ng-click="addBookmark()">Add Current Page To Bookmarks</button>
+    <button ng-click="deleteBookmarks()">Delete All Bookmarks</button>
+    </body>
+</html>
