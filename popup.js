@@ -1,18 +1,28 @@
 var app = angular.module('app', [])
 	
-	.controller('Main', function($scope){
+	.controller('Main', function($scope, BookmarkFactory){
 		chrome.storage.local.get('bookmark', function(data){
 			$scope.bookmarks = data.bookmark;
 			$scope.$apply();
 		});
 
-		$scope.addBookmark = function(){
+		$scope.bookmarkInteraction = function(action){
+			if (action === 'add'){
+				BookmarkFactory.addBookmark();
+			}
+			else if (action === 'remove') {
+				chrome.storage.local.clear();
+			}
+		};
+	})
+
+	.factory('BookmarkFactory', function(){
+		function addToStorage (){
 			chrome.storage.local.get(function(data){
 				if (data){
 					var currBookmarks = data.bookmark;
 				}
 				chrome.tabs.query({active:true,currentWindow:true},function(tabArray){
-					console.log('here')
 					var markArr = [];
 					if (currBookmarks){
 						currBookmarks.forEach(function(item){
@@ -24,7 +34,11 @@ var app = angular.module('app', [])
 				});
 			})
 		};
-		$scope.deleteBookmarks = function(){
-			chrome.storage.local.clear();
+
+		return {
+			addBookmark: function(){
+				return addToStorage();
+			}
 		}
-	});
+
+	})
