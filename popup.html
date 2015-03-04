@@ -10,9 +10,10 @@
         </style>
     </head>
     <body ng-controller='Main'>
-    <li ng-repeat="bookmark in bookmarks"><a href={{bookmark}} target="_blank"> {{bookmark}}</a></li>
-    ---
+    <li ng-repeat="bookmark in bookmarks track by $index"><a href={{bookmark}} target="_blank"> {{bookmark}}</a></li>
+    <p></p>
     <button ng-click="bookmarkInteraction('add')">Add Current Page To Bookmarks</button>
+    <p></p>
     <button ng-click="bookmarkInteraction('remove')">Delete All Bookmarks</button>
     </body>
 </html>
