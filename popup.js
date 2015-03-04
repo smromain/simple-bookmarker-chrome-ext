@@ -11,7 +11,7 @@ var app = angular.module('app', [])
 				BookmarkFactory.addBookmark();
 			}
 			else if (action === 'remove') {
-				chrome.storage.local.clear();
+				BookmarkFactory.removeAllBookmarks();
 			}
 		};
 	})
@@ -38,6 +38,9 @@ var app = angular.module('app', [])
 		return {
 			addBookmark: function(){
 				return addToStorage();
+			},
+			removeAllBookmarks: function(){
+				return chrome.storage.local.clear();
 			}
 		}
 
